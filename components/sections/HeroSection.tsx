@@ -20,7 +20,7 @@ const HeroSection = () => {
                             <div className="absolute top-0 left-1/2 -translate-x-1/2">
                                 <ServiceButton
                                     title="Physicians"
-                                    href="/physicians"
+                                    href="/physicians-platform"
                                     responsive
                                 />
                             </div>
