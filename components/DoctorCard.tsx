@@ -1,21 +1,27 @@
 import { Star } from 'lucide-react';
 import { Physician } from '@/lib/types/physician';
 import CommentCarousel  from "@/components/ui/CommentCarousel";
-import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
 
 interface DoctorCardProps {
     physician: Physician;
 }
 
-const techLogos = [
-    { node: <SiReact size={48} color="#a7a29c" />, title: "React", href: "https://react.dev" },
-    { node: <SiNextdotjs size={48} color="#5f4b3bff" />, title: "Next.js", href: "https://nextjs.org" },
-    { node: <SiTypescript size={48} color="#a7a29c" />, title: "TypeScript", href: "https://www.typescriptlang.org" },
-    { node: <SiTailwindcss size={48} color="#a77c48ff" />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
-];
 
 const DoctorCard = ({ physician }: DoctorCardProps) => {
     const { name, specialty, rating, image, comments } = physician;
+
+    // Test comments - fallback if physician.comments is empty
+    const testComments = [
+        "One of the kindest doctors I've ever met. Highly professional and caring!",
+        "Dr. Smith took the time to listen to all my concerns. Excellent bedside manner.",
+        "Very thorough examination and explained everything clearly. I felt safe and comfortable.",
+        "Best doctor in the area! Made my recovery so much smoother.",
+        "Compassionate, knowledgeable, and patient. I recommend them to everyone!"
+    ];
+
+    // Use physician comments if available, otherwise use test comments
+    const displayComments = comments && comments.length > 0 ? comments : testComments;
+
 
     // Generate filled stars based on rating
     const renderStars = () => {
@@ -68,7 +74,7 @@ const DoctorCard = ({ physician }: DoctorCardProps) => {
                 {/* Comments Section */}
                 <div className="border-2xl border-gray-200 bg-gray">
                     <CommentCarousel
-                        comments={comments || []}
+                        comments={displayComments}
                         interval={4000}
                     />
                 </div>
