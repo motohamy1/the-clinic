@@ -5,6 +5,7 @@ export interface Physician {
   rating: number;
   image: string;
   searchCount: number;
+  comments: string[];
 }
 
 // Database type (matches Supabase schema with snake_case)
@@ -27,5 +28,6 @@ export function mapPhysicianFromDB(dbPhysician: PhysicianDB): Physician {
     rating: dbPhysician.rating,
     image: dbPhysician.image_url,
     searchCount: dbPhysician.search_count,
+    comments: [], // Default empty array, can be populated from DB if available
   };
 }

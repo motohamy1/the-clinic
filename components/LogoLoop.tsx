@@ -22,7 +22,7 @@ export type LogoItem =
 export interface LogoLoopProps {
   logos: LogoItem[];
   speed?: number;
-  direction?: 'left' | 'right';
+  direction?: 'left' | 'right' | 'up' | 'down';
   width?: number | string;
   logoHeight?: number;
   gap?: number;
@@ -117,7 +117,8 @@ const useAnimationLoop = (
   targetVelocity: number,
   seqWidth: number,
   isHovered: boolean,
-  pauseOnHover: boolean
+  pauseOnHover: boolean,
+  direction: 'left' | 'right' | 'up' | 'down'
 ) => {
   const rafRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
@@ -130,7 +131,14 @@ const useAnimationLoop = (
 
     if (seqWidth > 0) {
       offsetRef.current = ((offsetRef.current % seqWidth) + seqWidth) % seqWidth;
-      track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
+      const isVertical = direction === 'up' || direction === 'down';
+      const translateValue = -offsetRef.current;
+
+      if (isVertical) {
+        track.style.transform = `translate3d(0, ${translateValue}px, 0)`;
+      } else {
+        track.style.transform = `translate3d(${translateValue}px, 0, 0)`;
+      }
     }
 
     const animate = (timestamp: number) => {
@@ -151,8 +159,14 @@ const useAnimationLoop = (
         nextOffset = ((nextOffset % seqWidth) + seqWidth) % seqWidth;
         offsetRef.current = nextOffset;
 
-        const translateX = -offsetRef.current;
-        track.style.transform = `translate3d(${translateX}px, 0, 0)`;
+        const isVertical = direction === 'up' || direction === 'down';
+        const translateValue = -offsetRef.current;
+
+        if (isVertical) {
+          track.style.transform = `translate3d(0, ${translateValue}px, 0)`;
+        } else {
+          track.style.transform = `translate3d(${translateValue}px, 0, 0)`;
+        }
       }
 
       rafRef.current = requestAnimationFrame(animate);
@@ -167,7 +181,7 @@ const useAnimationLoop = (
       }
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, isHovered, pauseOnHover]);
+  }, [targetVelocity, seqWidth, isHovered, pauseOnHover, direction]);
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
@@ -196,27 +210,51 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 
     const targetVelocity = useMemo(() => {
       const magnitude = Math.abs(speed);
-      const directionMultiplier = direction === 'left' ? 1 : -1;
       const speedMultiplier = speed < 0 ? -1 : 1;
+      let directionMultiplier = 1;
+
+      switch (direction) {
+        case 'left':
+          directionMultiplier = 1;
+          break;
+        case 'right':
+          directionMultiplier = -1;
+          break;
+        case 'up':
+          directionMultiplier = 1;
+          break;
+        case 'down':
+          directionMultiplier = -1;
+          break;
+        default:
+          directionMultiplier = 1;
+      }
+
       return magnitude * directionMultiplier * speedMultiplier;
     }, [speed, direction]);
 
     const updateDimensions = useCallback(() => {
       const containerWidth = containerRef.current?.clientWidth ?? 0;
+      const containerHeight = containerRef.current?.clientHeight ?? 0;
       const sequenceWidth = seqRef.current?.getBoundingClientRect?.()?.width ?? 0;
+      const sequenceHeight = seqRef.current?.getBoundingClientRect?.()?.height ?? 0;
 
-      if (sequenceWidth > 0) {
-        setSeqWidth(Math.ceil(sequenceWidth));
-        const copiesNeeded = Math.ceil(containerWidth / sequenceWidth) + ANIMATION_CONFIG.COPY_HEADROOM;
+      const isVertical = direction === 'up' || direction === 'down';
+      const containerSize = isVertical ? containerHeight : containerWidth;
+      const sequenceSize = isVertical ? sequenceHeight : sequenceWidth;
+
+      if (sequenceSize > 0) {
+        setSeqWidth(Math.ceil(sequenceSize));
+        const copiesNeeded = Math.ceil(containerSize / sequenceSize) + ANIMATION_CONFIG.COPY_HEADROOM;
         setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
       }
-    }, []);
+    }, [direction]);
 
     useResizeObserver(updateDimensions, [containerRef, seqRef], [logos, gap, logoHeight]);
 
     useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight]);
 
-    useAnimationLoop(trackRef, targetVelocity, seqWidth, isHovered, pauseOnHover);
+    useAnimationLoop(trackRef, targetVelocity, seqWidth, isHovered, pauseOnHover, direction);
 
     const cssVariables = useMemo(
       () =>
@@ -230,10 +268,16 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 
     const rootClassName = useMemo(
       () =>
-        ['logoloop', fadeOut && 'logoloop--fade', scaleOnHover && 'logoloop--scale-hover', className]
+        [
+          'logoloop',
+          (direction === 'up' || direction === 'down') && 'logoloop--vertical',
+          fadeOut && 'logoloop--fade',
+          scaleOnHover && 'logoloop--scale-hover',
+          className
+        ]
           .filter(Boolean)
           .join(' '),
-      [fadeOut, scaleOnHover, className]
+      [fadeOut, scaleOnHover, className, direction]
     );
 
     const handleMouseEnter = useCallback(() => {

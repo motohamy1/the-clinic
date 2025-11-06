@@ -7,12 +7,14 @@ interface AnimatedShinyButtonProps {
   children: React.ReactNode
   className?: string
   url?: string
+  isActive?: boolean
 }
 
 export function AnimatedShinyButton({
   children,
   className = "",
   url,
+  isActive = false,
 }: AnimatedShinyButtonProps) {
   return (
     <>
@@ -238,17 +240,54 @@ export function AnimatedShinyButton({
             --shiny-cta-highlight-subtle: #0891b2;
           }
         }
+
+        /* Active state - Orange theme with enhanced visibility */
+        .shiny-cta-active,
+        .shiny-cta-link-active {
+          --shiny-cta-bg: #FF7839;
+          --shiny-cta-bg-subtle: #ff6620;
+          --shiny-cta-fg: #ffffff;
+          --shiny-cta-highlight: #ffaa80;
+          --shiny-cta-highlight-subtle: #ff8c5c;
+          --gradient-percent: 30%;
+          --gradient-angle-offset: 95deg;
+          box-shadow: 
+            inset 0 0 0 1px var(--shiny-cta-bg-subtle),
+            0 0 20px rgba(255, 120, 57, 0.6),
+            0 0 40px rgba(255, 120, 57, 0.4);
+          transform: scale(1.05);
+        }
+
+        .shiny-cta-active,
+        .shiny-cta-active::before,
+        .shiny-cta-active::after,
+        .shiny-cta-link-active,
+        .shiny-cta-link-active::before,
+        .shiny-cta-link-active::after {
+          animation-play-state: running;
+        }
+
+        .shiny-cta-active::before,
+        .shiny-cta-link-active::before {
+          opacity: 0.7;
+        }
+
+        .shiny-cta-active span::before,
+        .shiny-cta-link-active span::before {
+          opacity: 1;
+          box-shadow: inset 0 -1ex 3rem 6px var(--shiny-cta-highlight);
+        }
       `}</style>
 
       {url ? (
-        <a href={url} className={`shiny-cta-link group ${className}`}>
+        <a href={url} className={`shiny-cta-link group ${isActive ? 'shiny-cta-link-active' : ''} ${className}`}>
           <span className="flex items-center">
             {children}
             <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
           </span>
         </a>
       ) : (
-        <button className={`shiny-cta group ${className}`}>
+          <button className={`shiny-cta group ${isActive ? 'shiny-cta-active' : ''} ${className}`}>
           <span className="flex items-center">
             {children}
             <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />

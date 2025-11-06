@@ -1,6 +1,7 @@
 .logoloop {
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
+  height: 100%;
 
   --logoloop-gap: 32px;
   --logoloop-logoHeight: 28px;
@@ -25,9 +26,20 @@
   user-select: none;
 }
 
+.logoloop--vertical .logoloop__track {
+  flex-direction: column;
+  width: auto;
+  height: max-content;
+}
+
 .logoloop__list {
   display: flex;
   align-items: center;
+}
+
+.logoloop--vertical .logoloop__list {
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .logoloop__item {
@@ -37,8 +49,18 @@
   line-height: 1;
 }
 
+.logoloop--vertical .logoloop__item {
+  margin-right: 0;
+  margin-bottom: var(--logoloop-gap);
+}
+
 .logoloop__item:last-child {
   margin-right: var(--logoloop-gap);
+}
+
+.logoloop--vertical .logoloop__item:last-child {
+  margin-right: 0;
+  margin-bottom: var(--logoloop-gap);
 }
 
 .logoloop__node {
@@ -92,14 +114,19 @@
 .logoloop--fade::after {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
   width: clamp(24px, 8%, 120px);
   pointer-events: none;
   z-index: 1;
 }
 
-.logoloop--fade::before {
+/* Horizontal fade */
+.logoloop--fade:not(.logoloop--vertical)::before,
+.logoloop--fade:not(.logoloop--vertical)::after {
+  top: 0;
+  bottom: 0;
+}
+
+.logoloop--fade:not(.logoloop--vertical)::before {
   left: 0;
   background: linear-gradient(
     to right,
@@ -108,10 +135,37 @@
   );
 }
 
-.logoloop--fade::after {
+.logoloop--fade:not(.logoloop--vertical)::after {
   right: 0;
   background: linear-gradient(
     to left,
+    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* Vertical fade */
+.logoloop--fade.logoloop--vertical::before,
+.logoloop--fade.logoloop--vertical::after {
+  left: 0;
+  right: 0;
+  width: auto;
+  height: clamp(24px, 8%, 120px);
+}
+
+.logoloop--fade.logoloop--vertical::before {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.logoloop--fade.logoloop--vertical::after {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
     var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
     rgba(0, 0, 0, 0) 100%
   );

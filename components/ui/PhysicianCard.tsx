@@ -105,7 +105,7 @@ const PhysicianCard = ({ physician }: PhysicianCardProps) => {
                     </div>
 
                     {/* Book Appointment Button */}
-                    <Link href={`/appointment?physicianId=${id}`}>
+                    <Link href={`/physicians-platform/appointment/${id}`}>
                         <AnimatedShinyButton className="w-full bg-[#FF7839] hover:bg-[#ff6620] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
                             Book Appointment
                         </AnimatedShinyButton>
