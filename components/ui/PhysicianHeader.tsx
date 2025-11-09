@@ -3,11 +3,21 @@ import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button";
 import ReturnToHome from './ReturnToHome'
 import { usePathname } from 'next/navigation'
 
-const PhysicianHeader = () => {
+interface PhysicianHeaderProps {
+    titleLabel?: string;
+    buttonLabel?: string;
+    basePath?: string; // e.g. "/physicians-platform" or "/dentists-platform"
+}
+
+const PhysicianHeader = ({
+    titleLabel = 'Physicians Platform',
+    buttonLabel = 'Physicians',
+    basePath = '/physicians-platform',
+}: PhysicianHeaderProps) => {
     const pathname = usePathname()
 
-    // Check if we're on any appointment page
-    const isAppointmentPage = pathname?.includes('/appointment')
+    // Check if we're on any appointment page under the given basePath
+    const isAppointmentPage = pathname?.startsWith(`${basePath}/appointment`)
 
     return (
         <>
@@ -20,7 +30,7 @@ const PhysicianHeader = () => {
                          text-primary bg-gradient-to-r from-[#FF7839] to-[#ff7839]
                          shadow-[0_4px_15px_rgba(255,120,57,0.6)]
                          px-4 md:px-6 py-2 hover:scale-110 transition-all rounded-2xl'>
-                        Physicians Platform
+                        {titleLabel}
                     </h1>
                 </div>
             </header>
@@ -28,20 +38,20 @@ const PhysicianHeader = () => {
             {/* Three nav buttons */}
             <nav className='flex flex-wrap items-center justify-center gap-3 md:gap-6 mt-6 md:mt-10 px-4'>
                 <AnimatedShinyButton
-                    url="/physicians-platform"
-                    isActive={pathname === '/physicians-platform'}
+                    url={basePath}
+                    isActive={pathname === basePath}
                 >
-                    Physicians
+                    {buttonLabel}
                 </AnimatedShinyButton>
                 <AnimatedShinyButton
-                    url="/physicians-platform"
-                    isActive={isAppointmentPage}
+                    url={basePath}
+                    isActive={!!isAppointmentPage}
                 >
                     Appointment
                 </AnimatedShinyButton>
                 <AnimatedShinyButton
-                    url="/physicians-platform/consultation"
-                    isActive={pathname === '/physicians-platform/consultation'}
+                    url={`${basePath}/consultation`}
+                    isActive={pathname === `${basePath}/consultation`}
                 >
                     Consultation
                 </AnimatedShinyButton>

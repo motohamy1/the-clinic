@@ -1,13 +1,6 @@
 import ServiceButton from "../ui/ServiceButton"
-import LogoLoop from '../LogoLoop';
-import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
+import CommentCarousel from "@/components/ui/CommentCarousel";
 
-const techLogos = [
-    { node: <SiReact size={48} color="#a7a29c" />, title: "React", href: "https://react.dev" },
-    { node: <SiNextdotjs size={48} color="#5f4b3bff" />, title: "Next.js", href: "https://nextjs.org" },
-    { node: <SiTypescript size={48} color="#a7a29c" />, title: "TypeScript", href: "https://www.typescriptlang.org" },
-    { node: <SiTailwindcss size={48} color="#a77c48ff" />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
-];
 
 const HeroSection = () => {
     return (
@@ -29,7 +22,7 @@ const HeroSection = () => {
                             <div className="absolute top-1/2 left-0 -translate-y-1/2">
                                 <ServiceButton
                                     title="Dentists"
-                                    href="/dentists"
+                                    href="/dentists-platform"
                                     responsive
                                 />
                             </div>
@@ -38,7 +31,7 @@ const HeroSection = () => {
                             <div className="absolute top-1/2 right-0 -translate-y-1/2">
                                 <ServiceButton
                                     title="Physical Therapy"
-                                    href="/physical-therapy"
+                                    href="/physical-therapy-platform"
                                     responsive
                                 />
                             </div>
@@ -47,7 +40,7 @@ const HeroSection = () => {
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
                                 <ServiceButton
                                     title="AI medical Hub"
-                                    href="/ai-hub"
+                                    href="/ai-platform"
                                     responsive
                                 />
                             </div>
@@ -57,18 +50,7 @@ const HeroSection = () => {
             </section>
             <footer className="bg-background">
                 <div className="h-[80px] md:h-[120px] relative overflow-hidden">
-                    <LogoLoop
-                        logos={techLogos}
-                        speed={50}
-                        direction="left"
-                        logoHeight={48}
-                        gap={60}
-                        pauseOnHover
-                        scaleOnHover
-                        fadeOut
-                        fadeOutColor="#ffffff"
-                        ariaLabel="Technology partners"
-                    />
+                    <CommentCarousel comments={[]} />
                 </div>
             </footer>
         </div>

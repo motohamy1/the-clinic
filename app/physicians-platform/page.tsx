@@ -1,7 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react';
-import ReturnToHome from '@/components/ui/ReturnToHome'
-import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button"
 import Search from '@/components/Search'
 import PhysicianGrid from '@/components/ui/PhysicianGrid'
 import { Physician } from '@/lib/types/physician'

@@ -61,7 +61,7 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
   if (!isClient) {
     // Return desktop navbar during SSR to avoid hydration mismatch
     return (
-      <header className='fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl'>
+      <header className=' top-8 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl'>
         <nav className='bg-[#d4cec4]/60 backdrop-blur-md rounded-full shadow-lg border border-white/20 px-8 py-3'>
           <div className='flex items-center justify-between gap-4'>
             <div className='flex items-center gap-4'>

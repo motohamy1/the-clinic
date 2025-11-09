@@ -5,9 +5,10 @@ import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button"
 
 interface PhysicianCardProps {
     physician: Physician;
+    basePath?: string; // e.g. "/physicians-platform" or "/dentists-platform"
 }
 
-const PhysicianCard = ({ physician }: PhysicianCardProps) => {
+const PhysicianCard = ({ physician, basePath = '/physicians-platform' }: PhysicianCardProps) => {
     const { id, name, specialty, rating, image } = physician;
 
     // Generate filled stars based on rating
@@ -105,7 +106,7 @@ const PhysicianCard = ({ physician }: PhysicianCardProps) => {
                     </div>
 
                     {/* Book Appointment Button */}
-                    <Link href={`/physicians-platform/appointment/${id}`}>
+                    <Link href={`${basePath}/appointment/${id}`}>
                         <AnimatedShinyButton className="w-full bg-[#FF7839] hover:bg-[#ff6620] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center">
                             Book Appointment
                         </AnimatedShinyButton>
