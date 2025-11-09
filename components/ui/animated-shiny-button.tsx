@@ -247,8 +247,8 @@ export function AnimatedShinyButton({
           --shiny-cta-bg: #FF7839;
           --shiny-cta-bg-subtle: #ff6620;
           --shiny-cta-fg: #ffffff;
-          --shiny-cta-highlight: #ffaa80;
-          --shiny-cta-highlight-subtle: #ff8c5c;
+          --shiny-cta-highlight: #ff7839;
+          --shiny-cta-highlight-subtle: #ff7839;
           --gradient-percent: 30%;
           --gradient-angle-offset: 95deg;
           box-shadow: 

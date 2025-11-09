@@ -38,6 +38,10 @@ const Search = ({ placeholder, value, onChange }: Props) => {
 }
 
 const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: start;
+  width: 100%;
+
   .container {
     position: relative;
     border-radius: 1000px;

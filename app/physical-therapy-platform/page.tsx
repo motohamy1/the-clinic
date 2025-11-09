@@ -6,7 +6,7 @@ import { Physician } from '@/lib/types/physician'
 import { fetchPhysicians } from '@/lib/services/physicianService'
 import PhysicianHeader from '@/components/ui/PhysicianHeader';
 
-const DentistPlatform = () => {
+const PhysicalTherapyPlatform = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [physicians, setPhysicians] = useState<Physician[]>([]);
     const [filteredPhysicians, setFilteredPhysicians] = useState<Physician[]>([]);
@@ -51,14 +51,14 @@ const DentistPlatform = () => {
         <main className="min-h-screen pb-8">
 
             <PhysicianHeader
-                titleLabel="Dentists Platform"
-                buttonLabel="Dentists"
-                basePath="/dentists-platform"
+                 titleLabel="Physical Therapy Platform"
+                 buttonLabel="Physical Therapiest"
+                 basePath="/physical-therapy-platform"
             />
 
             <div className="flex px-4">
                 <Search
-                    placeholder="Search for a dentist"
+                    placeholder="Search for a physical therapist"
                     value={searchQuery}
                     onChange={setSearchQuery}
                 />
@@ -66,7 +66,7 @@ const DentistPlatform = () => {
 
             {loading && (
                 <div className="flex justify-center items-center py-16">
-                    <p className="text-xl text-gray-600">Loading dentists...</p>
+                    <p className="text-xl text-gray-600">Loading physicians...</p>
                 </div>
             )}
 
@@ -76,9 +76,9 @@ const DentistPlatform = () => {
                 </div>
             )}
 
-            {!loading && !error && <PhysicianGrid physicians={filteredPhysicians} basePath="/dentists-platform" />}
+            {!loading && !error && <PhysicianGrid physicians={filteredPhysicians} />}
         </main>
     )
 }
 
-export default DentistPlatform
+export default PhysicalTherapyPlatform
