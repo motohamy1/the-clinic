@@ -52,7 +52,7 @@ const DoctorCard = ({ physician }: DoctorCardProps) => {
 
             <div className=" shadow-2xl max-w-md w-full bg-grey rounded-2xl">
                 {/* Image */}
-                <div className="relative h-80 w-full overflow-hidden rounded-2xl">
+                <div className="relative h-95 w-full overflow-hidden rounded-2xl">
                     <img
                         src={image}
                         alt={name}

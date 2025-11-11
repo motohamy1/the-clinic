@@ -1,0 +1,74 @@
+{
+    "checksum": "9e76f7377dd948e153078e5a13b97b10332050716e8c43a67a8a23838f1a9a20",
+    "data": {
+    "id": "c9651afb-a845-4cb9-b8f0-4938a9bcf40c",
+    "createdAt": 1762881898747,
+    "updatedAt": 1762881903350,
+    "title": "Repo.md Insight Extractor",
+    "messages": [
+        {
+            "id": "72edd5de-f99a-4362-829a-50f74efb5f6b",
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Generate repo.md file with information from my repo"
+                }
+            ],
+            "context": {},
+            "createdAt": 1762881898755,
+            "isInternal": false,
+            "rawContent": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Generate repo.md file with information from my repo"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "autoAppliedRules": []
+        },
+        {
+            "id": "a2dea0bd-4ee6-41f5-8942-058410b10b7e",
+            "role": "system",
+            "content": [
+                {
+                    "type": "errorText",
+                    "text": "",
+                    "title": "You’ve hit your plan usage limits",
+                    "actions": [
+                        {
+                            "type": "upgradePlan",
+                            "title": "Upgrade plan",
+                            "waitSeconds": 48896
+                        },
+                        {
+                            "type": "externalAction",
+                            "title": "Regenerate",
+                            "action": "regenerateLastAnswer"
+                        }
+                    ]
+                }
+            ],
+            "createdAt": 1762881903350,
+            "isInternal": false
+        }
+    ],
+    "isAgent": true,
+    "isNameGenerated": true,
+    "isCustomAgent": false,
+    "isUnitTestsAgent": false,
+    "isE2EAgent": false,
+    "isWebDevAgent": false,
+    "isQnaAgent": false,
+    "isRepoInfoAgent": true,
+    "model": "default",
+    "agentsRuntime": "zen-cli"
+}
+}

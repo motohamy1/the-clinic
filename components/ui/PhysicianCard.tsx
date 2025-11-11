@@ -90,7 +90,7 @@ const PhysicianCard = ({ physician, basePath = '/physicians-platform' }: Physici
                     <img
                         src={image}
                         alt={name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-[-15%] object-cover"
                     />
                 </div>
 

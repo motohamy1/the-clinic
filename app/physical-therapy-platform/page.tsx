@@ -52,7 +52,7 @@ const PhysicalTherapyPlatform = () => {
 
             <PhysicianHeader
                  titleLabel="Physical Therapy Platform"
-                 buttonLabel="Physical Therapiest"
+                 buttonLabel="Physical Therapist"
                  basePath="/physical-therapy-platform"
             />
 
@@ -76,7 +76,7 @@ const PhysicalTherapyPlatform = () => {
                 </div>
             )}
 
-            {!loading && !error && <PhysicianGrid physicians={filteredPhysicians} />}
+            {!loading && !error && <PhysicianGrid physicians={filteredPhysicians} basePath="/physical-therapy-platform" />}
         </main>
     )
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ai.zencoder.plugin.chat.index">
+    <option name="activeChatId" value="c9651afb-a845-4cb9-b8f0-4938a9bcf40c" />
+    <option name="chatMetadata" value="{&quot;da9c6051-1d3b-4c8c-b296-e47be2245cb1&quot;:{&quot;id&quot;:&quot;da9c6051-1d3b-4c8c-b296-e47be2245cb1&quot;,&quot;title&quot;:&quot;MobileLayoutOptimizer Hook&quot;,&quot;createdAt&quot;:1762880942611,&quot;updatedAt&quot;:1762881635896,&quot;isAgent&quot;:true,&quot;isNameGenerated&quot;:true,&quot;messageCount&quot;:2,&quot;lastMessagePreview&quot;:&quot;&quot;},&quot;c9651afb-a845-4cb9-b8f0-4938a9bcf40c&quot;:{&quot;id&quot;:&quot;c9651afb-a845-4cb9-b8f0-4938a9bcf40c&quot;,&quot;title&quot;:&quot;Repo.md Insight Extractor&quot;,&quot;createdAt&quot;:1762881898747,&quot;updatedAt&quot;:1762881903350,&quot;isAgent&quot;:true,&quot;isNameGenerated&quot;:true,&quot;messageCount&quot;:2,&quot;lastMessagePreview&quot;:&quot;&quot;}}" />
+  </component>
+</project>

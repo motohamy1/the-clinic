@@ -21,7 +21,7 @@ const PhysicianHeader = ({
 
     return (
         <>
-            <header className="px-4 pt-2 md:pt-4 pb-3 md:pb-4">
+            <header className="px-4 pt-4 md:pt-4 pb-3 md:pb-4">
                 <div className="mb-2 md:mb-4">
                     <ReturnToHome />
                 </div>

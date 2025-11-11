@@ -4,26 +4,33 @@ import Link from 'next/link';
 import Image from 'next/image';
 import NavButton from './ui/navButton';
 import BubbleMenu from './ui/BubbleMenu';
-import { useState, useEffect } from 'react';
+import useMobile from '@/lib/useMobile';
 
 interface NavbarProps {
   onMenuStateChange?: (isOpen: boolean) => void;
 }
 
 const Navbar = ({ onMenuStateChange }: NavbarProps) => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+  const { isMobile, ready, select } = useMobile({ mobileBreakpoint: 768 });
 
-  useEffect(() => {
-    setIsClient(true);
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // md breakpoint
-    };
+  const navWrapperClass = select({
+    mobile: 'top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl',
+    tablet: 'fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl',
+    desktop: 'fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl'
+  });
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const navInnerClass = [
+    'bg-[#d4cec4]/60',
+    'backdrop-blur-md',
+    'rounded-full',
+    'shadow-lg',
+    'border border-white/20',
+    select({
+      mobile: 'px-6 py-2',
+      tablet: 'px-8 py-3',
+      desktop: 'px-8 py-3'
+    })
+  ].join(' ');
 
   // Menu items for BubbleMenu
   const menuItems = [
@@ -32,37 +39,37 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
       href: '/',
       ariaLabel: 'Home',
       rotation: -5,
-      hoverStyles: { bgColor: '#8C9B81', textColor: '#ffffff' }
+      hoverStyles: { bgColor: '#ff7839', textColor: '#ffffff' }
     },
     {
       label: 'solutions',
       href: '/solutions',
       ariaLabel: 'Solutions',
       rotation: 3,
-      hoverStyles: { bgColor: '#A8B89D', textColor: '#ffffff' }
+      hoverStyles: { bgColor: '#ff7839', textColor: '#ffffff' }
     },
     {
       label: 'contact',
       href: '/contact',
       ariaLabel: 'Contact',
       rotation: 5,
-      hoverStyles: { bgColor: '#7A8970', textColor: '#ffffff' }
+      hoverStyles: { bgColor: '#ff7839', textColor: '#ffffff' }
     },
     {
       label: 'profile',
       href: '/profile',
       ariaLabel: 'Profile',
       rotation: -3,
-      hoverStyles: { bgColor: '#6B7A61', textColor: '#ffffff' }
+      hoverStyles: { bgColor: '#ff7839', textColor: '#ffffff' }
     }
   ];
 
   // Show BubbleMenu on mobile (only after client-side hydration)
-  if (!isClient) {
+  if (!ready) {
     // Return desktop navbar during SSR to avoid hydration mismatch
     return (
-      <header className=' top-8 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl'>
-        <nav className='bg-[#d4cec4]/60 backdrop-blur-md rounded-full shadow-lg border border-white/20 px-8 py-3'>
+      <header className={navWrapperClass}>
+        <nav className={navInnerClass}>
           <div className='flex items-center justify-between gap-4'>
             <div className='flex items-center gap-4'>
               <Link href='/'>
@@ -107,6 +114,7 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
         animationEase="back.out(1.5)"
         animationDuration={0.5}
         staggerDelay={0.12}
+        onMenuClick={onMenuStateChange}
       />
     );
   }
@@ -125,8 +133,8 @@ const Navbar = ({ onMenuStateChange }: NavbarProps) => {
 
   // Show regular navbar on desktop
   return (
-    <header className='fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl'>
-      <nav className='bg-[#d4cec4]/60 backdrop-blur-md rounded-full shadow-lg border border-white/20 px-8 py-3'>
+    <header className={navWrapperClass}>
+      <nav className={navInnerClass}>
         <div className='flex items-center justify-between gap-4'>
           {/* Left section */}
           <div className='flex items-center gap-4'>

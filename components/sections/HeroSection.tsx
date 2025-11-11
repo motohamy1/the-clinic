@@ -4,7 +4,7 @@ import CommentCarousel from "@/components/ui/CommentCarousel";
 
 const HeroSection = () => {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-max">
             <section className="flex-1 flex items-center justify-center pt-16 md:pt-49 pb-11 px-4">
                 <div className="relative w-full max-w-[280px] sm:max-w-md md:max-w-2xl aspect-square">
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -49,7 +49,7 @@ const HeroSection = () => {
                 </div>
             </section>
             <footer className="bg-background">
-                <div className="h-[80px] md:h-[120px] relative overflow-hidden">
+                <div className="h-[50px] md:h-[50px] mb-10 relative overflow-hidden">
                     <CommentCarousel comments={[]} />
                 </div>
             </footer>

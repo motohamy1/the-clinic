@@ -84,13 +84,18 @@ const Appointment = () => {
             <div className="container mx-auto px-4 md:px-6 lg:px-8 mt-20">
                 <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
                     {/* Text Section - Left Side */}
-                    <div className='flex-1 space-y-14 '>
+                    <div className='flex-1 space-y-10 '>
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800">
                             Congratulation!!
                         </h1>
                         <h2 className="text-xl md:text-2xl lg:text-3xl text-gray-600">
                             You have met your Ideal Doctor,<br />
                             Wish it would help you in fast Recovery.
+                        </h2>
+                        <h2 className="text-xl md:text-2xl lg:text-3xl text-gray-600">
+                            Secure Appointment <br/>Scheduling Solution<br/>
+                            for Healthcare
+                            Professionals
                         </h2>
                         <div className='flex mt-65 gap-8'>
                             <AnimatedShinyButton >

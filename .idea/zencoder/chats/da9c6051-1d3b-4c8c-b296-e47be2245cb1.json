@@ -1,0 +1,84 @@
+{
+    "checksum": "ddcc964dc2180c293eeeb374224d3ee8207e6c44cace4cab129a3af71a15752e",
+    "data": {
+    "id": "da9c6051-1d3b-4c8c-b296-e47be2245cb1",
+    "createdAt": 1762880942611,
+    "updatedAt": 1762881635896,
+    "title": "MobileLayoutOptimizer Hook",
+    "messages": [
+        {
+            "id": "966f02f7-42c5-493d-9399-d4a05ec6723b",
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "can you create a custom useMobile.ts hook that will optimize the layout when we are on mobile view"
+                }
+            ],
+            "context": {
+                "currentFile": {
+                    "path": "lib/useMobile.ts",
+                    "fsPath": "D:/Programming/My-Platforms/the-clinic/lib/useMobile.ts",
+                    "sources": [
+                        "opened_tab"
+                    ],
+                    "content": "",
+                    "language": "typescript"
+                }
+            },
+            "createdAt": 1762880942635,
+            "isInternal": false,
+            "rawContent": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "can you create a custom useMobile.ts hook that will optimize the layout when we are on mobile view"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "autoAppliedRules": []
+        },
+        {
+            "id": "4463a301-a751-42a9-b59a-a89ab8bb3a20",
+            "role": "system",
+            "content": [
+                {
+                    "type": "errorText",
+                    "text": "",
+                    "title": "You’ve hit your plan usage limits",
+                    "actions": [
+                        {
+                            "type": "upgradePlan",
+                            "title": "Upgrade plan",
+                            "waitSeconds": 49164
+                        },
+                        {
+                            "type": "externalAction",
+                            "title": "Regenerate",
+                            "action": "regenerateLastAnswer"
+                        }
+                    ]
+                }
+            ],
+            "createdAt": 1762881635896,
+            "isInternal": false
+        }
+    ],
+    "isAgent": true,
+    "isNameGenerated": true,
+    "isCustomAgent": false,
+    "isUnitTestsAgent": false,
+    "isE2EAgent": false,
+    "isWebDevAgent": false,
+    "isQnaAgent": false,
+    "isRepoInfoAgent": false,
+    "model": "default",
+    "agentsRuntime": "zen-cli"
+}
+}

@@ -80,6 +80,11 @@ const Appointment = () => {
                             You have met your Ideal Doctor,<br />
                             Wish it would help you in fast Recovery.
                         </h2>
+                        <h2 className="text-xl md:text-2xl lg:text-3xl text-gray-600">
+                            Secure Appointment <br/>Scheduling Solution<br/>
+                            for Healthcare
+                            Professionals
+                        </h2>
                         <div className='flex mt-65 gap-8'>
                             <AnimatedShinyButton >
                                 <span className="text-white">Appointment Now</span>
