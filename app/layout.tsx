@@ -23,8 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inriaSerif.variable} font-sans antialiased`} suppressHydrationWarning={true}
-        style={{ fontFamily: 'var(--font-inria-serif)' }}
-      >
+        style={{ fontFamily: 'var(--font-inria-serif)' }}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>
